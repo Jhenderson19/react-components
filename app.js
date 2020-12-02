@@ -11,11 +11,25 @@ var GroceryList = (props) => (
 class GroceryListItem extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      hovered: false
+    }
+  }
+  onListItemHover() {
+    this.setState({
+      hovered: !this.state.hovered
+    })
   }
 
   render() {
+
+    var style = {
+      fontWeight: this.state.hovered ? 'bold' : 'normal'
+    };
+
     return (
-      <li key={this.props.key}>
+      <li style={style} key={this.props.key} onMouseEnter={this.onListItemHover.bind(this)} onMouseLeave={this.onListItemHover.bind(this)}>
         {this.props.item}
       </li>
     );
